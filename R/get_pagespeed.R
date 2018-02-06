@@ -68,15 +68,15 @@ get_pagespeed <- function(
   parsed <- jsonlite::fromJSON(con)
 
   # Extract all values
-  single_results <- data.frame(title = ifelse(is.null(parsed$title), "Not available", parsed$title),
-                               url = ifelse(is.null(parsed$loadingExperience$initial_url), "Not available", parsed$loadingExperience$initial_url),
-                               speed_score = ifelse(is.null(parsed$ruleGroups$SPEED$score), "Not available", parsed$ruleGroups$SPEED$score),
-                               overall_category = ifelse(is.null(parsed$loadingExperience$overall_category), "Not available", parsed$loadingExperience$overall_category))
+  single_results <- data.frame(title = ifelse(is.null(parsed$title), NA, parsed$title),
+                               url = ifelse(is.null(parsed$loadingExperience$initial_url), NA, parsed$loadingExperience$initial_url),
+                               speed_score = ifelse(is.null(parsed$ruleGroups$SPEED$score), NA, parsed$ruleGroups$SPEED$score),
+                               overall_category = ifelse(is.null(parsed$loadingExperience$overall_category), NA, parsed$loadingExperience$overall_category))
   page_stats_df <- as.data.frame(parsed$pageStats)
-  FCP <- data.frame(fcp_median = ifelse(is.null(parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$median), "Not available", parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$median),
-                    fcp_category = ifelse(is.null(parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$category), "Not available", parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$category))
-  DCL <- data.frame(dcl_median = ifelse(is.null(parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$median), "Not available", parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$median),
-                    dcl_category = ifelse(is.null(parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$category), "Not available", parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$category))
+  FCP <- data.frame(fcp_median = ifelse(is.null(parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$median), NA, parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$median),
+                    fcp_category = ifelse(is.null(parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$category), NA, parsed$loadingExperience$metrics$FIRST_CONTENTFUL_PAINT_MS$category))
+  DCL <- data.frame(dcl_median = ifelse(is.null(parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$median), NA, parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$median),
+                    dcl_category = ifelse(is.null(parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$category), NA, parsed$loadingExperience$metrics$DOM_CONTENT_LOADED_EVENT_FIRED_MS$category))
   full_results <- cbind(single_results, page_stats_df, FCP, DCL)
   full_results
 }
