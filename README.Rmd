@@ -23,6 +23,8 @@ insights <- get_pagespeed(ps_url = page)
 insights
 ```
 
+![](img/insights.png)
+
 We are given back a data frame containing a number of key metrics for the given page.
 
 Definitions for each metric can be reviewed at [https://developers.google.com/web/tools/chrome-user-experience-report/#metrics](https://developers.google.com/web/tools/chrome-user-experience-report/#metrics)
@@ -48,6 +50,8 @@ urls <- list("http://www.rstudio.com", "http://www.reddit.com", "https://www.pyt
 multi_results <- map_df(urls, get_pagespeed)
 multi_results
 ```
+
+![](img/multi.png)
 
 ### Raw content query
 
