@@ -58,7 +58,7 @@ multi_results
 
 ### Raw content query
 
-If you prefer to get a list-format object returned, containing all available fields from the API's JSON response, you can do this using `get_pagespeed_content()`. From here, you can pick and choose whichever values you'd like.
+If you prefer to have the API response converted directly into a list and select the values of interest, you can do this using `get_pagespeed_content()`. 
 
 ```{r}
 insights_content <- get_pagespeed_content(ps_url = page)
