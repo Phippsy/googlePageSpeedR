@@ -1,6 +1,6 @@
 # googlePageSpeedR
 
-This package makes a call to the Google PageSpeed Insights API and returns a data frame of results. 
+This package makes a call to the Google PageSpeed Insights API and returns a data frame of results. This means you can programatically retrieve all of the analysis points accessible via the [Google PageSpeed Insights webpage](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fwww.rstudio.com)
 Useful for analysing your / your competitors' page performance and organising into glorious tabular format.
 
 ### TODO
