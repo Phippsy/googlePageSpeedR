@@ -12,7 +12,7 @@ Useful for analysing your / your competitors' page performance and organising in
 ### Install
 
 ```{r eval = FALSE}
-devtools::install_github("Phippsy/googlePageSpeedR)
+devtools::install_github("Phippsy/googlePageSpeedR")
 ```
 
 ### Simple Query
