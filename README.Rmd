@@ -56,6 +56,29 @@ multi_results
 
 ![](img/multi.png)
 
+#### Update - preventing data loss using `possibly`
+
+Unfortunately, if any of your URLs return an invalid http status (e.g. `Bad Request (HTTP 400)`) then you will lose all data for all URLs when you call `map_df()`.
+
+A workaround for this is to wrap `get_pagespeed()` in the `possibly()` function from `purrr`. Many thanks to [Johannes Radig](https://twitter.com/joradig/status/979692615531720704) for flagging this issue in [this Twitter convo](https://twitter.com/joradig/status/979692615531720704).
+
+The drawback with the below code is that you won't know if any URLs fail - you'll have to cross-check the data frame of results against the list of URLs you submit.
+
+```{r, message = FALSE, warning = FALSE}
+urls <- list("http://www.rstudio.com", "http://www.reddit.com", "https://www.python.org/", 
+             "http://www.thisisnotarealURLandisntgoingtowork.com", "https://myspace.com/", "https://www.linux.org")
+
+# The code below would fail - not run
+# multi_results <- map_df(urls, get_pagespeed)
+# multi_results
+
+# Adding our safe function
+safe_pagespeed <- possibly(get_pagespeed, otherwise = NULL)
+safe_multi_results <- map_df(urls, safe_pagespeed)
+safe_multi_results
+
+```
+
 ### Raw content query
 
 If you prefer to have the API response converted directly into a list and select the values of interest, you can do this using `get_pagespeed_content()`. 
